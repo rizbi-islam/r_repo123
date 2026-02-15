@@ -2,14 +2,17 @@ class PortfolioAnalytics {
     constructor() {
         this.gaEnabled = false;
         this.gaMeasurementId = 'G-SKF50RZWN2';
+        this.viewsKey = 'portfolio_views';
+        this.clicksKey = 'portfolio_clicks_count';
         this.init();
     }
 
     init() {
         this.setupGA();
+        this.incrementViewCount();
         this.sendPageView();
         this.trackClicks();
-        this.markUITracked();
+        this.displayCounts();
     }
 
     setupGA() {
@@ -19,8 +22,15 @@ class PortfolioAnalytics {
                 gtag('js', new Date());
                 gtag('config', this.gaMeasurementId);
             } catch (e) {}
-            console.log('Google Analytics initialized');
+            console.log('Google Analytics (GA4) initialized with ID: ' + this.gaMeasurementId);
         }
+    }
+
+    incrementViewCount() {
+        let views = this.getViews();
+        views.total = (views.total || 0) + 1;
+        views.lastVisit = new Date().toISOString();
+        this.saveViews(views);
     }
 
     sendPageView() {
@@ -56,22 +66,58 @@ class PortfolioAnalytics {
     }
 
     trackEvent(eventName, data = {}) {
+        // Increment click counter for engagement events
+        if (eventName && (eventName.includes('click') || eventName === 'resume_download')) {
+            let clicks = this.getClicksCount();
+            clicks.total = (clicks.total || 0) + 1;
+            clicks.last = new Date().toISOString();
+            this.saveClicksCount(clicks);
+            this.displayCounts();
+        }
+
+        // Send to GA4
         if (this.gaEnabled && typeof gtag !== 'undefined') {
             gtag('event', eventName, data);
         }
     }
 
-    markUITracked() {
+    displayCounts() {
+        const views = this.getViews();
+        const clicks = this.getClicksCount();
+
         const viewEl = document.getElementById('view-count');
-        if (viewEl) viewEl.textContent = 'Tracked';
+        if (viewEl) {
+            viewEl.textContent = (views.total || 0).toString();
+        }
+
         const clickEl = document.getElementById('click-count');
-        if (clickEl) clickEl.textContent = 'Tracked';
+        if (clickEl) {
+            clickEl.textContent = (clicks.total || 0).toString();
+        }
+    }
+
+    getViews() {
+        return JSON.parse(localStorage.getItem(this.viewsKey) || '{}');
+    }
+
+    saveViews(views) {
+        localStorage.setItem(this.viewsKey, JSON.stringify(views));
+    }
+
+    getClicksCount() {
+        return JSON.parse(localStorage.getItem(this.clicksKey) || '{}');
+    }
+
+    saveClicksCount(countObj) {
+        localStorage.setItem(this.clicksKey, JSON.stringify(countObj));
     }
 
     // Admin helper
     getAnalyticsData() {
         return {
-            message: 'Analytics are collected by Google Analytics (GA4). Use the GA console to view reports.'
+            views: this.getViews(),
+            clicks: this.getClicksCount(),
+            message: 'Views and clicks shown here are local browser counts. Full analytics are in Google Analytics (GA4: ' + this.gaMeasurementId + ')'
         };
     }
 }
