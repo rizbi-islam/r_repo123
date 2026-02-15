@@ -1,0 +1,22 @@
+<!-- Basic password: qa2024 (you can change this) -->
+<input type="password" id="stats-password" placeholder="Enter analytics password">
+<div id="stats-dashboard" style="display: none;">
+    <h2>Portfolio Analytics</h2>
+    <div id="stats-data"></div>
+    <button onclick="exportStats()">Export as JSON</button>
+</div>
+
+<script>
+document.getElementById('stats-password').addEventListener('keyup', function(e) {
+    if (e.target.value === 'qa2024') {
+        document.getElementById('stats-dashboard').style.display = 'block';
+        loadStats();
+    }
+});
+
+function loadStats() {
+    const analytics = window.portfolioAnalytics?.getAnalyticsData() || {};
+    document.getElementById('stats-data').innerHTML = 
+        `<pre>${JSON.stringify(analytics, null, 2)}</pre>`;
+}
+</script>
