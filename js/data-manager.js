@@ -284,22 +284,3 @@ class PortfolioData {
         document.body.prepend(errorDiv);
     }
 }
-
-// Debug the loading process
-console.log('PortfolioData script loaded');
-
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM fully loaded, initializing portfolio...');
-    
-    // Test if containers exist
-    console.log('Checking containers:', {
-        skills: !!document.getElementById('skills-container'),
-        experience: !!document.getElementById('experience-timeline'),
-        projects: !!document.getElementById('projects-container'),
-        stats: !!document.getElementById('stats-container')
-    });
-    
-    const portfolio = new PortfolioData();
-    portfolio.init();
-});
