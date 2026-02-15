@@ -122,7 +122,6 @@ class PortfolioAnalytics {
     }
 }
 
-// Initialize analytics
-document.addEventListener('DOMContentLoaded', () => {
-    window.portfolioAnalytics = new PortfolioAnalytics();
+document.addEventListener("DOMContentLoaded", () => {
+    new PortfolioAnalytics();
 });
