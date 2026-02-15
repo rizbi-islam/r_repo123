@@ -47,13 +47,21 @@
   /* Light Theme Variables */
   [data-theme="light"] {
     --bg-primary: #f8fafc;
-    --bg-secondary: #ffffff;
+    --bg-secondary: #e8efff;
     --bg-card: #ffffff;
     --text-primary: #0f172a;
     --text-secondary: #475569;
     --border-color: #e2e8f0;
     --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --badge-bg-blue: rgba(59, 130, 246, 0.08);
+    --badge-bg-purple: rgba(139, 92, 246, 0.08);
+  }
+  
+  /* Dark Theme badge colors */
+  :root {
+    --badge-bg-blue: rgba(59, 130, 246, 0.1);
+    --badge-bg-purple: rgba(139, 92, 246, 0.1);
   }
   
   /* ===== BASE STYLES ===== */
@@ -193,6 +201,10 @@
     z-index: 1000;
     padding: var(--space-sm) 0;
     border-bottom: 1px solid var(--border-color);
+  }
+  
+  [data-theme="light"] .qa-nav {
+    background: rgba(248, 250, 252, 0.95);
   }
   
   .nav-content {
@@ -502,12 +514,16 @@
   }
   
   .tech-badge {
-    background: rgba(59, 130, 246, 0.1);
+    background: var(--badge-bg-blue);
     color: var(--accent-primary);
     padding: 0.25rem 0.75rem;
     border-radius: 2rem;
     font-size: 0.8rem;
     border: 1px solid rgba(59, 130, 246, 0.3);
+  }
+  
+  [data-theme="light"] .tech-badge {
+    border: 1px solid rgba(59, 130, 246, 0.2);
   }
   
   /* ===== PROJECTS SECTION ===== */
@@ -562,11 +578,12 @@
   }
   
   .project-tech span {
-    background: rgba(139, 92, 246, 0.1);
+    background: var(--badge-bg-purple);
     color: var(--accent-secondary);
     padding: 0.25rem 0.75rem;
     border-radius: 2rem;
     font-size: 0.8rem;
+    border: 1px solid rgba(139, 92, 246, 0.2);
   }
   
   .project-card-footer {
