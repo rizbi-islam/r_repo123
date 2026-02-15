@@ -1,7 +1,7 @@
 class PortfolioAnalytics {
     constructor() {
         this.gaEnabled = false;
-        this.gaMeasurementId = 'G-XC84VT2HW3';
+        this.gaMeasurementId = 'G-SKF50RZWN2';
         this.init();
     }
 

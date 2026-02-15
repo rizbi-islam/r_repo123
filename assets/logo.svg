@@ -1,8 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 80">
-  <rect width="240" height="80" rx="12" fill="#0f172a"/>
-  <g transform="translate(18,10)">
-    <circle cx="30" cy="30" r="24" fill="#06b6d4"/>
-    <text x="30" y="38" font-family="Inter, Arial, sans-serif" font-size="28" fill="white" text-anchor="middle">R</text>
-    <text x="80" y="44" font-family="Inter, Arial, sans-serif" font-size="28" fill="#cbd5e1">Rizbi Islam</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100">
+  <!-- Dark background -->
+  <rect width="300" height="100" fill="#0f172a"/>
+  
+  <!-- Cyan accent circle -->
+  <circle cx="50" cy="50" r="35" fill="#06b6d4"/>
+  
+  <!-- "R" using paths for icon -->
+  <g transform="translate(50,50)" fill="white">
+    <path d="M -8,-18 L -3,-18 Q 5,-18 5,-10 Q 5,-5 0,-3 L 8,18 L 2,18 L -5,0 L -3,0 Q 0,0 0,-4 Q 0,-8 -3,-8 L -8,-8 Z"/>
   </g>
+  
+  <!-- "Rizbi Islam" text using simple SVG text (fallback) -->
+  <text x="110" y="65" font-family="Arial, sans-serif" font-size="48" font-weight="600" fill="#e2e8f0">Rizbi Islam</text>
 </svg>
