@@ -10,7 +10,7 @@
     "social": {
       "linkedin": "https://linkedin.com/in/rizbi-islam",
       "github": "https://github.com/rizbi-islam",
-      "portfolio": "https://rizbi-islam.github.io/r_repo"
+      "portfolio": "https://rizbi-islam.github.io/profile"
     },
     "resume": "assets/resume.pdf"
   },
@@ -82,17 +82,20 @@
       ],
       "category": "Automation Testing",
       "github": "https://github.com/rizbiislam/Automation-Exercise-testing-with-Cypress",
-      "link": "https://automationexercise.com/"
+      "link": "https://automationexercise.com/",
+      "liveDemo": "https://automationexercise.com/"
     },
     {
       "id": 3,
       "title": "OpenCart Automation",
       "description": "This repository appears to contain automation tests for the OpenCart e-commerce platform. The specific details about the framework and technologies used would need to be reviewed from the repository content directly, as access to analyze it wasn't available during this review.",
       "technologies": ["Automation Framework"],
+      "keyFeatures": [],
       "category": "E-commerce Testing",
       "note": "Repository content requires direct review for detailed analysis",
       "github": "https://github.com/rizbiislam/OpenCart-Automation",
-      "link": "https://www.opencart.com/"
+      "link": "https://www.opencart.com/",
+      "liveDemo": "https://www.opencart.com/"
     }
   ],
   "experience": [
@@ -113,7 +116,7 @@
       "id": 2,
       "company": "IT Directorate, Bangladesh Army",
       "position": "QA Engineer (Part-time)",
-      "period": "Mar 2025 - Nov 2025",
+      "period": "March 2025 - November 2025",
       "location": "Remote",
       "achievements": [
         "Automated critical UI workflows using multiple frameworks based on project needs",
