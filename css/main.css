@@ -42,6 +42,9 @@
     /* Transitions */
     --transition-fast: 150ms ease;
     --transition-normal: 300ms ease;
+    /* Card overlay colors (theme-aware) */
+    --card-overlay: rgba(30, 41, 59, 0.55);
+    --card-border: rgba(255, 255, 255, 0.08);
   }
   
   /* Light Theme Variables */
@@ -54,6 +57,8 @@
     --border-color: #e2e8f0;
     --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --card-overlay: rgba(255, 255, 255, 0.85);
+    --card-border: rgba(14, 165, 233, 0.06);
     --badge-bg-blue: rgba(59, 130, 246, 0.08);
     --badge-bg-purple: rgba(139, 92, 246, 0.08);
   }
@@ -776,8 +781,8 @@
   justify-content: space-between;
   padding: 60px;
   border-radius: 2rem;
-  background: rgba(30, 41, 59, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--card-overlay);
+  border: 1px solid var(--card-border);
   backdrop-filter: blur(18px);
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
   max-width: 1100px;
@@ -1105,4 +1110,26 @@
     background: var(--accent-primary);
     color: white;
     transform: scale(1.05);
+}
+
+/* Small screens: make hero card and image more compact to avoid oversized card */
+@media (max-width: 480px) {
+  .hero-wrapper {
+    padding: 20px;
+    gap: 20px;
+    border-radius: 1rem;
+  }
+
+  .hero-image {
+    height: 220px;
+    max-width: 220px;
+    object-fit: cover;
+  }
+
+  .hero-image-section {
+    flex: 0 0 220px;
+  }
+
+  .hero-name { font-size: 1.8rem; }
+  .hero-title { font-size: 1.1rem; }
 }

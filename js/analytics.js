@@ -1,13 +1,27 @@
 class PortfolioAnalytics {
     constructor() {
         this.gaEnabled = false;
-        this.gaMeasurementId = 'G-SKF50RZWN2';
+        this.gaMeasurementId = null;
         this.viewsKey = 'portfolio_views';
         this.clicksKey = 'portfolio_clicks_count';
-        this.init();
+        this.loadConfigAndInit();
     }
 
-    init() {
+    async loadConfigAndInit() {
+        try {
+            const res = await fetch('data/ga.json', { cache: 'no-store' });
+            if (res.ok) {
+                const cfg = await res.json();
+                if (cfg && cfg.enabled && cfg.measurementId) {
+                    this.gaMeasurementId = cfg.measurementId;
+                    await this.loadGAScript(this.gaMeasurementId);
+                }
+            }
+        } catch (e) {
+            // Fail silently, analytics are optional
+            console.warn('GA config load failed', e);
+        }
+
         this.setupGA();
         this.incrementViewCount();
         this.sendPageView();
@@ -15,8 +29,34 @@ class PortfolioAnalytics {
         this.displayCounts();
     }
 
+    loadGAScript(id) {
+        return new Promise((resolve) => {
+            if (!id) return resolve();
+            // If script already present, resolve
+            if (document.querySelector('script[data-ga="' + id + '"]')) return resolve();
+            const s = document.createElement('script');
+            s.async = true;
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(id);
+            s.setAttribute('data-ga', id);
+            s.onload = () => {
+                try {
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){window.dataLayer.push(arguments);} // local wrapper
+                    window.gtag = window.gtag || gtag;
+                    window.gtag('js', new Date());
+                    window.gtag('config', id);
+                    this.gaEnabled = true;
+                    console.log('GA script loaded for', id);
+                } catch (e) {}
+                resolve();
+            };
+            s.onerror = () => resolve();
+            document.head.appendChild(s);
+        });
+    }
+
     setupGA() {
-        if (typeof gtag !== 'undefined') {
+        if (typeof gtag !== 'undefined' && this.gaMeasurementId) {
             this.gaEnabled = true;
             try {
                 gtag('js', new Date());
