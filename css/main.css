@@ -736,10 +736,10 @@
 
 /* ===== PREMIUM HERO BANNER ===== */
 .qa-hero {
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
-  padding: 120px 0 80px;
+  padding: 100px 0 60px;
   background: radial-gradient(circle at top right,
       rgba(139, 92, 246, 0.25),
       transparent 60%),
@@ -789,6 +789,64 @@
   margin: auto;
   position: relative;
   z-index: 1;
+}
+
+/* Make the hero-wrapper full width on smaller devices and reduce overlay strength */
+@media (max-width: 900px) {
+  .qa-hero {
+    min-height: 60vh;
+    padding: 60px 0 40px;
+  }
+
+  .hero-wrapper {
+    max-width: 920px;
+    padding: 40px;
+    gap: 32px;
+    background: rgba(30,41,59,0.45);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+  }
+
+  .hero-image {
+    height: 320px;
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .qa-hero {
+    min-height: auto;
+    padding: 40px 0 24px;
+  }
+
+  .hero-wrapper {
+    max-width: 100%;
+    padding: 18px;
+    gap: 16px;
+    border-radius: 1rem;
+    background: rgba(30,41,59,0.25);
+    border: 1px solid rgba(255,255,255,0.04);
+    box-shadow: none;
+  }
+
+  .hero-image-section {
+    flex: 0 0 auto;
+    margin: 0 auto;
+  }
+
+  .hero-image {
+    width: 100%;
+    max-width: 220px;
+    height: auto;
+    aspect-ratio: 1/1.15;
+    display: block;
+    margin: 0 auto;
+    border-radius: 1rem;
+    border: 1px solid rgba(59,130,246,0.18);
+  }
+
+  .hero-text {
+    text-align: center;
+  }
 }
 
 .hero-image-section {
