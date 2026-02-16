@@ -16,21 +16,21 @@
   },
   "skills": {
     "automationFrameworks": [
-      { "name": "Playwright", "level": 85 },
-      { "name": "Cypress", "level": 85 },
-      { "name": "Selenium WebDriver", "level": 90 },
-      { "name": "TestNG", "level": 90 }
+      { "name": "Playwright", "level": 70 },
+      { "name": "Cypress", "level": 70 },
+      { "name": "Selenium WebDriver", "level": 80 },
+      { "name": "TestNG", "level": 80 }
     ],
     "programming": [
-      { "name": "JavaScript", "level": 85 },
-      { "name": "Java", "level": 85 }
+      { "name": "JavaScript", "level": 75 },
+      { "name": "Java", "level": 80 }
     ],
     "testingTools": [
-      { "name": "Postman", "level": 95 },
+      { "name": "Postman", "level": 90 },
       { "name": "Newman", "level": 90 },
       { "name": "JMeter", "level": 75 },
       { "name": "Locust", "level": 70 },
-      { "name": "TestRail", "level": 85 }
+      { "name": "TestRail", "level": 75 }
     ],
     "methodologies": [
       "Agile/Scrum",
@@ -147,6 +147,7 @@
     }
   ],
   "stats": {
+    "displayMode": "bar",
     "automationCoverage": 75,
     "testAccuracy": 78,
     "bugDetection": 75,

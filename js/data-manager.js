@@ -217,16 +217,43 @@ class PortfolioData {
             return;
         }
         
+        // Extract display mode (default: 'bar' | 'percentage' | 'both')
+        const displayMode = stats.displayMode || 'bar';
+        
         let html = '<div class="stats-grid">';
         
         for (const [stat, value] of Object.entries(stats)) {
-            html += `
-                <div class="stat-card">
-                    <h3>${this.formatCategoryName(stat)}</h3>
+            // Skip displayMode key itself
+            if (stat === 'displayMode') continue;
+            
+            let statContent = '';
+            
+            // Render based on display mode
+            if (displayMode === 'percentage') {
+                // Percentage only
+                statContent = `<div class="stat-number">${value}%</div>`;
+            } else if (displayMode === 'bar') {
+                // Bar only
+                statContent = `
+                    <div class="stat-bar">
+                        <div class="stat-fill" data-value="${value}"></div>
+                    </div>
+                    <div style="text-align: center; color: var(--text-secondary); font-size: 0.9rem; margin-top: 8px;">${value}%</div>
+                `;
+            } else if (displayMode === 'both') {
+                // Both percentage and bar
+                statContent = `
                     <div class="stat-number">${value}%</div>
                     <div class="stat-bar">
                         <div class="stat-fill" data-value="${value}"></div>
                     </div>
+                `;
+            }
+            
+            html += `
+                <div class="stat-card">
+                    <h3>${this.formatCategoryName(stat)}</h3>
+                    ${statContent}
                 </div>
             `;
         }

@@ -228,6 +228,7 @@
     font-size: 1.5rem;
     background: var(--gradient-qa);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
   }
   
@@ -944,6 +945,7 @@
   margin-bottom: 10px;
   background: var(--gradient-qa);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -1160,6 +1162,7 @@
     font-weight: 800;
     background: var(--gradient-qa);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     margin: var(--space-sm) 0;
 }
